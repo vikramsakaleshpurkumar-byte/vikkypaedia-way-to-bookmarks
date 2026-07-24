@@ -30,5 +30,7 @@ test("server-renders the Waymark bookmark rescue product", async () => {
   assert.match(html, /Rescue them/i);
   assert.match(html, /RESCUE DESK/i);
   assert.match(html, /Import bookmark file/i);
+  assert.match(html, /Try the 60-second demo/i);
+  assert.match(html, /See the idea in three clicks/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
