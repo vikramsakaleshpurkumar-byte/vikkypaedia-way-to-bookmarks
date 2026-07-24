@@ -60,6 +60,10 @@ button { color: inherit; }
   border: 0; background: transparent; color: var(--muted); cursor: pointer;
   font-size: 12px; text-decoration: underline; text-underline-offset: 4px;
 }
+.github-link {
+  color: var(--ink); font-size: 12px; font-weight: 750;
+  text-decoration: none; border-bottom: 1px solid var(--ink);
+}
 
 .hero {
   width: min(1220px, calc(100% - 40px)); margin: 0 auto; min-height: 650px;
@@ -86,7 +90,23 @@ h1 em { color: var(--blue); font-weight: 500; }
 }
 .primary-button:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
 .primary-button span { margin-left: 14px; font-size: 18px; }
+.secondary-button {
+  border: 1px solid var(--ink); background: transparent; padding: 15px 18px;
+  border-radius: 6px; cursor: pointer; font-weight: 800;
+}
+.secondary-button:hover { background: var(--white); }
 .helper { max-width: 170px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.export-help {
+  width: min(520px,100%); margin-top: 22px; color: var(--muted); font-size: 12px;
+}
+.export-help summary {
+  width: fit-content; cursor: pointer; color: var(--ink); font-weight: 750;
+  text-decoration: underline; text-underline-offset: 4px;
+}
+.export-help ol {
+  margin: 12px 0 0; padding: 14px 18px 14px 32px;
+  border: 1px solid var(--line); background: var(--white); line-height: 1.7;
+}
 .rescue-note {
   position: relative; transform: rotate(2.2deg); padding: 58px 40px 36px;
   background: var(--acid); box-shadow: 12px 15px 0 rgba(23,38,33,.12);
@@ -100,6 +120,37 @@ h1 em { color: var(--blue); font-weight: 500; }
 .note-number { display: block; color: var(--blue); font-family: Georgia,serif; font-size: 15px; font-style: italic; }
 .rescue-note p { margin: 5px 0 20px; font-size: 19px; font-weight: 750; line-height: 1.15; }
 .scribble { margin-top: 30px; font-family: "Segoe Print","Comic Sans MS",cursive; font-size: 13px; transform: rotate(-2deg); }
+
+.quickstart {
+  width: min(1220px,calc(100% - 40px)); margin: 0 auto 72px;
+  display: grid; grid-template-columns: 320px minmax(0,1fr); gap: 60px;
+  align-items: end;
+}
+.quickstart-heading h2 {
+  margin: 0; font-family: Georgia,serif; font-size: 40px; font-weight: 500;
+  letter-spacing: -.04em; line-height: 1;
+}
+.quickstart-heading > p:last-child {
+  margin: 18px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6;
+}
+.quickstart-grid {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  border-top: 1px solid var(--ink); border-left: 1px solid var(--ink);
+}
+.quickstart-grid button {
+  min-height: 175px; padding: 24px; display: flex; flex-direction: column;
+  align-items: flex-start; text-align: left; border: 0;
+  border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  background: var(--white); cursor: pointer;
+}
+.quickstart-grid button:hover { background: var(--acid); }
+.quickstart-grid span {
+  color: var(--blue); font-family: Georgia,serif; font-size: 13px; font-style: italic;
+}
+.quickstart-grid strong { margin-top: auto; font-size: 15px; }
+.quickstart-grid small {
+  margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.45;
+}
 
 .workspace {
   width: min(1300px, calc(100% - 24px)); margin: 0 auto 24px; padding: 50px;
@@ -220,6 +271,7 @@ footer {
   padding: 20px 0; display: flex; align-items: center; justify-content: space-between;
   gap: 20px; color: var(--muted); font-size: 11px;
 }
+footer a { color: var(--ink); font-weight: 750; text-underline-offset: 3px; }
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0;
   margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
@@ -228,6 +280,7 @@ footer {
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 65px; }
   .rescue-note { width: min(360px,100%); justify-self: end; }
+  .quickstart { grid-template-columns: 1fr; gap: 28px; }
   .workspace { padding: 30px 22px; }
   .workspace-head { align-items: flex-start; flex-direction: column; }
   .controls { align-items: stretch; flex-direction: column; }
@@ -238,9 +291,13 @@ footer {
 @media (max-width: 600px) {
   .topbar { width: min(100% - 24px,1220px); }
   .privacy-pill { display: none; }
+  .github-link { margin-left: auto; }
   .hero { width: min(100% - 24px,1220px); min-height: auto; padding: 56px 4px 68px; }
   h1 { font-size: clamp(52px,16vw,72px); }
   .rescue-note { width: 90%; justify-self: center; }
+  .quickstart { width: calc(100% - 24px); }
+  .quickstart-grid { grid-template-columns: 1fr; }
+  .quickstart-grid button { min-height: 132px; }
   .workspace { width: calc(100% - 10px); padding: 25px 14px; }
   .stats { width: 100%; gap: 15px; justify-content: space-between; }
   .stats strong { font-size: 30px; }

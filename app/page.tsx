@@ -13,6 +13,8 @@ import {
 
 type View = "library" | "rescue" | "pack";
 const STORAGE_KEY = "waymark-alpha-library";
+const GITHUB_URL =
+  "https://github.com/vikramsakaleshpurkumar-byte/vikkypaedia-way-to-bookmarks";
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", {
@@ -154,6 +156,22 @@ export default function Home() {
     window.localStorage.removeItem(STORAGE_KEY);
   }
 
+  function showWorkspace(nextView: View, nextQuery = "") {
+    setQuery(nextQuery);
+    setView(nextView);
+    window.requestAnimationFrame(() => {
+      document
+        .getElementById("workspace")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function buildDemoPack() {
+    setSelected(items.slice(0, 3).map((item) => item.id));
+    setNotice("A three-source action pack is ready. Swap any source with one click.");
+    showWorkspace("pack");
+  }
+
   const visibleItems =
     view === "rescue"
       ? [...forgotten, ...duplicates.flatMap((group) => group)].filter(
@@ -174,6 +192,9 @@ export default function Home() {
           <span className="privacy-dot" />
           Private on this device
         </div>
+        <a className="github-link" href={GITHUB_URL} target="_blank" rel="noreferrer">
+          GitHub
+        </a>
         <button className="text-button" onClick={restoreSample}>
           Reset demo
         </button>
@@ -201,6 +222,12 @@ export default function Home() {
             >
               Import bookmark file <span>↑</span>
             </button>
+            <button
+              className="secondary-button"
+              onClick={() => showWorkspace("rescue")}
+            >
+              Try the 60-second demo
+            </button>
             <input
               ref={fileInput}
               className="visually-hidden"
@@ -213,6 +240,18 @@ export default function Home() {
               Chrome → Bookmarks → Export bookmarks
             </span>
           </div>
+          <details className="export-help">
+            <summary>How do I export my bookmarks?</summary>
+            <ol>
+              <li>Open Chrome&apos;s Bookmark Manager.</li>
+              <li>
+                Choose the three-dot menu, then <strong>Export bookmarks</strong>.
+              </li>
+              <li>
+                Import the downloaded HTML file here. It stays in this browser.
+              </li>
+            </ol>
+          </details>
         </div>
 
         <aside className="rescue-note" aria-label="How Waymark works">
@@ -227,7 +266,39 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="workspace" aria-label="Bookmark rescue workspace">
+      <section className="quickstart" aria-labelledby="quickstart-title">
+        <div className="quickstart-heading">
+          <p className="eyebrow">NO SETUP REQUIRED</p>
+          <h2 id="quickstart-title">See the idea in three clicks.</h2>
+          <p>
+            Use the fictional sample library before trusting Waymark with your
+            own export.
+          </p>
+        </div>
+        <div className="quickstart-grid">
+          <button onClick={() => showWorkspace("library", "meetings")}>
+            <span>01</span>
+            <strong>Find by memory</strong>
+            <small>Search “meetings,” not a perfect title.</small>
+          </button>
+          <button onClick={() => showWorkspace("rescue")}>
+            <span>02</span>
+            <strong>Rescue forgotten saves</strong>
+            <small>Surface old links and duplicate destinations.</small>
+          </button>
+          <button onClick={buildDemoPack}>
+            <span>03</span>
+            <strong>Make an action pack</strong>
+            <small>Turn three sources into a focused next step.</small>
+          </button>
+        </div>
+      </section>
+
+      <section
+        className="workspace"
+        id="workspace"
+        aria-label="Bookmark rescue workspace"
+      >
         <div className="workspace-head">
           <div>
             <p className="eyebrow">RESCUE DESK</p>
@@ -393,8 +464,15 @@ export default function Home() {
       </section>
 
       <footer>
-        <span>Waymark alpha · built to test retrieval, not collect data</span>
-        <span>Your library never leaves this browser.</span>
+        <span>
+          Waymark alpha · open source · built to test retrieval, not collect data
+        </span>
+        <span>
+          Your library never leaves this browser.{" "}
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer">
+            View the source
+          </a>
+        </span>
       </footer>
     </main>
   );
