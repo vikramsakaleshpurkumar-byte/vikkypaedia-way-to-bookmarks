@@ -1,40 +1,63 @@
 # Vikkypaedia Way to Bookmarks
 
-**Waymark** is the working product name.
-
 > Don’t organize your bookmarks. Rescue them.
 
-Waymark is an early, privacy-first experiment in **personal action memory**. It
-imports a browser bookmark export, helps people recover forgotten and duplicate
-saves, supports intent-aware retrieval, and turns a handful of sources into a
-small action pack.
+**Waymark** is a privacy-first personal action memory. It helps people recover
+forgotten saves, search by what they remember, and turn a few useful sources
+into a focused action pack.
 
-This repository is deliberately narrow. The goal is to test whether a bookmark
-tool can help people *use* more of what they save—not merely file it more
-beautifully.
+[Try the live demo](https://waymark-rescue-alpha.sri-rc.chatgpt.site) ·
+[Read the roadmap](ROADMAP.md) · [Contribute](CONTRIBUTING.md)
+
+![Waymark’s bookmark rescue workspace](public/screenshots/waymark-home.png)
+
+## Why this exists
+
+Most bookmark tools help people store more. Waymark asks a different question:
+**can a bookmark tool help people use more of what they already saved?**
+
+The alpha is deliberately narrow. It focuses on the rescue loop:
+
+1. Import a standard browser bookmark export.
+2. Find a save using a vague memory, topic, domain, or intention.
+3. Recover old and duplicate saves that deserve another look.
+4. Select a few sources and turn them into a practical next-step pack.
+
+## Try it in 60 seconds
+
+The demo opens with a fictional sample library, so no personal file is needed.
+
+- Click **Find by memory** to see intent-aware retrieval.
+- Click **Rescue forgotten saves** to surface old and duplicate links.
+- Click **Make an action pack** to create a focused plan from three sources.
+
+To use your own bookmarks, export an HTML file from Chrome or Firefox and
+import it on the page.
 
 ## What the alpha can do
 
 - Import Netscape-format HTML exports from Chrome and Firefox.
 - Keep the imported library in the current browser’s local storage.
 - Search titles, folders, notes, domains, tags, and inferred intent.
-- Expand a few natural intent words such as `learn`, `decide`, and `trip`.
-- Detect tracked or slightly different URLs that point to the same destination.
+- Expand natural intent words such as `learn`, `decide`, and `trip`.
+- Detect tracked or slightly different URLs pointing to the same destination.
 - Surface bookmarks older than one year.
-- Select sources and generate a focused, cited action pack.
+- Generate a focused action pack with a source trail.
+- Work without an account or cloud database.
 
 ## Privacy boundary
 
-The current alpha parses bookmark files in the browser. Imported bookmarks are
-not uploaded to Waymark’s server. The deployed demo contains only fictional
-sample bookmarks.
+Bookmark files are parsed in the browser. Imported bookmarks are not
+intentionally uploaded to Waymark’s server, and the demo contains only
+fictional sample data.
 
-This is not yet a security-audited product. Do not treat the alpha as a
-permanent archive.
+The alpha has not received an independent security audit. Do not treat it as a
+permanent archive or the only copy of important information. See
+[SECURITY.md](SECURITY.md) for responsible reporting.
 
 ## Run locally
 
-Requirements: Node.js 22.13+ and pnpm.
+Requirements: Node.js 22.13 or newer and pnpm.
 
 ```bash
 pnpm install
@@ -54,15 +77,24 @@ The test suite covers bookmark parsing, URL canonicalization, duplicate
 detection, forgotten-item detection, intent-aware ranking, action-pack
 generation, and server rendering.
 
-## The experiment
+## How success is measured
 
 Waymark should proceed only if users can:
 
 1. Find a known saved item in under 30 seconds.
 2. Recover at least one genuinely useful forgotten item during onboarding.
 3. Convert a meaningful portion of new saves into an action within 14 days.
-4. Describe the value as “helped me do something,” rather than “organized my
+4. Describe the value as “helped me do something,” not merely “organized my
    links.”
 
-See the repository issues for upcoming retrieval experiments, accessibility
-work, portable data formats, and connector proposals.
+## Contributing
+
+Ideas, accessibility improvements, tests, importers, translations, and
+retrieval experiments are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md)
+and the [project roadmap](ROADMAP.md).
+
+By participating, you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+MIT © 2026 Vikram S Kumar
