@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest a way to help people find or use saved material.
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What user problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would a good solution feel like?
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy and data considerations
+      description: What data would be read, stored, uploaded, or shared?
+    validations:
+      required: true
